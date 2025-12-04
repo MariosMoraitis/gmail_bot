@@ -1,7 +1,12 @@
-from flask import Flask, render_template
+"""
+app.py
+
+Flask dashboard for viewing bot logs and connection status.
+"""
+
 import json
-import os
 from datetime import datetime
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -9,8 +14,8 @@ LOG_FILE = "log.txt"
 STATUS_FILE = "status.json"
 
 
-def safe_read_file(path):
-    """Read a file safely even if another process is writing to it."""
+def safe_read_file(path: str):
+    """Return file contents or None if not available or in-use."""
     try:
         with open(path, "r", errors="ignore") as f:
             return f.read()
@@ -22,40 +27,35 @@ def safe_read_file(path):
 
 @app.route("/")
 def home():
-    # Read log file safely
+    """Render the dashboard showing logs and connection status."""
     log_content = safe_read_file(LOG_FILE)
     if log_content:
-        logs = log_content.splitlines()
-        logs.reverse()  # newest first
+        logs = log_content.strip().splitlines()
     else:
         logs = ["No logs yet."]
 
-    # Read status.json safely
-    status = {
-        "connected": False,
-        "timestamp": "No status recorded"
-    }
-
+    # Default status shown when status.json does not exist
+    status = {"connected": False, "timestamp": "Never"}
     st_json = safe_read_file(STATUS_FILE)
     if st_json:
         try:
             status = json.loads(st_json)
-        except json.JSONDecodeError:
-            status = {
-                "connected": False,
-                "timestamp": "Corrupted status file"
-            }
+        except Exception:
+            # keep default on parse failure
+            pass
 
-    # Format timestamp nicely
+    # Try to format timestamp for display
     try:
-        if "timestamp" in status:
-            dt = datetime.fromisoformat(status["timestamp"])
-            status["timestamp"] = dt.strftime("%Y-%m-%d %H:%M:%S")
-    except:
+        ts = status.get("timestamp")
+        if ts:
+            status["timestamp"] = datetime.fromisoformat(ts).strftime("%Y-%m-%d %H:%M:%S %Z")
+    except Exception:
+        # leave raw timestamp if formatting fails
         pass
 
     return render_template("index.html", logs=logs, status=status)
 
 
 if __name__ == "__main__":
+    # Development server. When running in production use gunicorn.
     app.run(host="0.0.0.0", port=5000)
