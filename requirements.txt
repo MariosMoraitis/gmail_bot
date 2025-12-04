@@ -1,6 +1,6 @@
 python-dotenv
-beautifulsoup4
-lxml
+# beautifulsoup4
+# lxml
 schedule
 flask
 gunicorn
