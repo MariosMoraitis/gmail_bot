@@ -3,18 +3,20 @@ version: "3.8"
 services:
   gmail_scheduler:
     build: .
-    command: python scheduler.py
-    env_file: /etc/bot/.env         # Suggested path to place the .env file, so only "sudo" users can access it.
+    command: python -m src.scheduler
+    env_file: /etc/bot/.env
     volumes:
       - ./log.txt:/app/log.txt
-      - ./status.json:/app/status.json
+      - ./config/status.json:/app/config/status.json
+      - ./config/senders.json:/app/config/senders.json
 
   gmail_dashboard:
     build: .
-    command: python app.py
-    env_file: /etc/bot/.env       # Suggested path to place the .env file, so only "sudo" users can access it.
+    command: python -m src.app
+    env_file: /etc/bot/.env
     ports:
       - "5002:5000"
     volumes:
       - ./log.txt:/app/log.txt
-      - ./status.json:/app/status.json
+      - ./config/status.json:/app/config/status.json
+      - ./config/senders.json:/app/config/senders.json

@@ -11,7 +11,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 LOG_FILE = "log.txt"
-STATUS_FILE = "status.json"
+
+from .paths import return_status_file
+STATUS_FILE = return_status_file()
 
 
 def safe_read_file(path: str):

@@ -20,9 +20,11 @@ EMAIL = os.getenv("EMAIL")
 APP_PASSWORD = os.getenv("PASSWORD")
 
 # Files used by the bot
-STATUS_FILE = "status.json"
+from .paths import return_senders_file, return_status_file
+
+STATUS_FILE = return_status_file()
 LOG_FILE = "log.txt"
-SENDERS_FILE = "senders.json"
+SENDERS_FILE = return_senders_file()
 
 
 def log(message: str) -> None:
