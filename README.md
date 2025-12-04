@@ -10,59 +10,21 @@ Automatically delete old emails from specified senders in your Gmail inbox. This
 - 🐳 **Docker ready** - Easy deployment with Docker Compose
 - **Coming Soon** - More functions on the way, feel free to make suggestion and collaborate!
 
-## Quick Start
-
-### Prerequisites
+## Prerequisites
 
 - Docker & Docker Compose
 - Gmail account with [2-factor authentication enabled](https://myaccount.google.com/security)
 - [Gmail App Password](https://myaccount.google.com/apppasswords)
 
-### Installation
+## Installation
 
-1. Clone the repository:
-```bash
-git clone <repo-url>
-cd gmail_automation
-```
-
-2. Create `.env` file with your Gmail credentials:
-```bash
-echo "EMAIL=your-email@gmail.com" > .env
-echo "PASSWORD=your-app-password" >> .env
-```
-
-3. Create `senders.json` with email addresses to monitor:
-```json
-{
-    "to_be_deleted": [
-        "newsletter@example.com",
-        "promo@shop.com",
-        "noreply@service.com"
-    ]
-}
-```
-
-4. Initialize other files:
-```bash
-echo '{"connected": false, "timestamp": ""}' > status.json
-touch log.txt
-```
-
-5. Start the bot:
-```bash
-docker compose up -d --build
-```
-
-Access the dashboard at `http://localhost:5002`
-
-## Linux Server Setup (or on Windows with WSL 😉)
+### Linux Server Setup (or on Windows with WSL 😉)
 
 On a Linux server with Docker installed:
 
 ```bash
-git clone <repo-url>
-cd gmail_automation
+git clone https://github.com/MariosMoraitis/gmail_bot.git
+cd gmail_βοτ
 
 # Create config files
 nano .env              # Add EMAIL and PASSWORD
