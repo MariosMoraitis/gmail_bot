@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gmail Bot Dashboard</title>
+    <meta charset="UTF-8">
+    <script>
+        // Auto-refresh every 8 seconds
+        setTimeout(() => {
+            location.reload(true);
+        }, 8000);
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background: #0f0f0f;
+            color: #eee;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .status-box {
+            background: #1c1c1c;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .status-icon {
+            font-size: 26px;
+        }
+
+        .status-text strong {
+            font-size: 16px;
+        }
+
+        .timestamp {
+            font-size: 12px;
+            margin-top: 3px;
+            color: #888;
+        }
+
+        .log-box {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-family: "Consolas", monospace;
+            max-height: 70vh;
+            overflow-y: auto;
+            font-size: 14px;
+            line-height: 1.4em;
+            border: 1px solid #222;
+        }
+
+        .divider {
+            border: none;
+            height: 1px;
+            background: #333;
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📬 Gmail Bot Dashboard</h1>
+    <div class="subtitle">Monitoring Gmail activity, deletions, and scans in real time.</div>
+
+    <div class="status-box">
+        {% if status.connected %}
+            <div class="status-icon">🟢</div>
+            <div class="status-text">
+                <strong>Connected to Gmail</strong>
+                <div class="timestamp">Last update: {{ status.timestamp }}</div>
+            </div>
+        {% else %}
+            <div class="status-icon">🔴</div>
+            <div class="status-text">
+                <strong>Not Connected</strong>
+                <div class="timestamp">Last attempt: {{ status.timestamp }}</div>
+            </div>
+        {% endif %}
+    </div>
+
+    <hr class="divider">
+
+    <div class="log-box">
+{{ logs | join("\n") }}
+    </div>
+
+</body>
+</html>
