@@ -61,7 +61,7 @@ Access the dashboard at `http://localhost:5002`
 On a Linux server with Docker installed:
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/MariosMoraitis/gmail_bot.git
 cd gmail_automation
 
 # Create config files
