@@ -22,7 +22,7 @@ Automatically delete old emails from specified senders in your Gmail inbox. This
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/MariosMoraitis/gmail_automation.git
+git clone https://github.com/MariosMoraitis/gmail_bot.git
 cd gmail_automation
 ```
 
