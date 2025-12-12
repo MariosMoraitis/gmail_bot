@@ -146,3 +146,12 @@ def run_delete_old_emails() -> None:
         except Exception:
             pass
         update_status(True)
+
+def clear_log_file():
+    """
+    This function will be run from the scheduler, in order to keep the log file clear
+    """
+    with open(LOG_FILE, 'r+') as f:
+        f.seek(0)
+        f.truncate()
+        f.write(f"Cleared the log file at {datetime.now()}")
