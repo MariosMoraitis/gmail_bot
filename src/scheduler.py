@@ -13,7 +13,7 @@ from .bot import run_delete_old_emails, clear_log_file
 schedule.every().day.do(run_delete_old_emails)
 
 # Schedule clearin the log file
-schedule.every().week.do(clear_log_file)
+schedule.every().sunday.do(clear_log_file)
 
 if __name__ == "__main__":
     print("Scheduler Started...")

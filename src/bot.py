@@ -37,7 +37,7 @@ def log(message: str) -> None:
     except Exception:
         # best-effort logging; don't crash the bot because logging failed
         pass
-    print(line)
+    # print(line)
 
 
 def update_status(connected: bool) -> None:
@@ -154,4 +154,4 @@ def clear_log_file():
     with open(LOG_FILE, 'r+') as f:
         f.seek(0)
         f.truncate()
-        f.write(f"Cleared the log file at {datetime.now()}")
+        f.write(f"Cleared the log file at {datetime.now()}\n")
