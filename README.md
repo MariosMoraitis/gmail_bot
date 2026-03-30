@@ -24,7 +24,7 @@ On a Linux server with Docker installed:
 
 ```bash
 git clone https://github.com/MariosMoraitis/gmail_bot.git
-cd gmail_βοτ
+cd gmail_bοτ
 
 # Create config files
 nano .env              # Add EMAIL and PASSWORD
