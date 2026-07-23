@@ -1,6 +1,8 @@
 import imaplib
 import email
-# from datetime import datetime, timedelta, timezone
+
+import socket
+socket.setdafaulttimeout(15)
 
 IMAP_HOST = "imap.gmail.com"
 TRASH_FOLDER = '"[Gmail]/&A5oDrAO0A78Dwg- &A7EDwAO,A8EDwQO5A7wDvAOsA8QDyQO9-"'
