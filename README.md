@@ -70,7 +70,7 @@ your main account credentials.
 ### 2. Clone and configure
 
 ```bash
-git clone https://github.com/<your-username>/gmail-purger.git
+git clone https://github.com/MariosMoraitis/gmail_bot.git
 cd gmail-purger
 
 cp .env.example .env
