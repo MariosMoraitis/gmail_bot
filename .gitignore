@@ -1,2 +1,6 @@
-/senders.json
-/log.txt
+.venv/
+__pycache__/
+*.pyc
+.env
+data/purge_log.json
+config/targets.json

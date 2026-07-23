@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gmail Purger</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="panel-header">
+    <div class="header-left">
+      <span class="dot {{ 'ok' if status.last_status == 'ok' else 'error' }}"></span>
+      <h1>Gmail Purger</h1>
+    </div>
+    <div class="header-right">
+      last run: {{ status.last_run or 'never' }}
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="stat-card wide">
+      <div class="stat-card-title">status</div>
+      <div class="status-value {{ 'ok' if status.last_status == 'ok' else 'error' }}">
+        {{ status.last_status }}
+      </div>
+      {% if status.last_error %}
+      <div class="error-detail">{{ status.last_error }}</div>
+      {% endif %}
+    </section>
+
+    <section class="stat-card wide">
+      <div class="stat-card-title">deleted messages ({{ status.entries|length }})</div>
+      <table class="log-table">
+        <thead>
+          <tr><th>deleted at</th><th>from</th><th>subject</th></tr>
+        </thead>
+        <tbody>
+          {% for entry in status.entries|reverse %}
+          <tr>
+            <td>{{ entry.deleted_at }}</td>
+            <td>{{ entry.from }}</td>
+            <td>{{ entry.subject }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+</body>
+</html>

@@ -1,22 +1,24 @@
-version: "3.8"
-
 services:
-  gmail_scheduler:
+  worker:
     build: .
-    command: python -m src.scheduler
-    env_file: /etc/bot/.env
+    container_name: gmail-purger-worker
+    command: python worker.py
+    env_file:
+      - .env
     volumes:
-      - ./log.txt:/app/log.txt
-      - ./config/status.json:/app/config/status.json
-      - ./config/senders.json:/app/config/senders.json
+      - ./config:/app/config
+      - ./data:/app/data
+    restart: unless-stopped
 
-  gmail_dashboard:
+  dashboard:
     build: .
-    command: python -m src.app
-    env_file: /etc/bot/.env
+    container_name: gmail-purger-dashboard
+    command: python app.py
+    env_file:
+      - .env
     ports:
-      - "5002:5000"
+      - "5005:5005"
     volumes:
-      - ./log.txt:/app/log.txt
-      - ./config/status.json:/app/config/status.json
-      - ./config/senders.json:/app/config/senders.json
+      - ./config:/app/config
+      - ./data:/app/data
+    restart: unless-stopped
