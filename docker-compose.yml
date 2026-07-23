@@ -21,7 +21,7 @@ services:
     env_file:
       - .env
     ports:
-      - "6000:6000"
+      - "5005:5005"
     volumes:
       - ./config:/app/config
       - ./data:/app/data
