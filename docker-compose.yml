@@ -3,6 +3,8 @@ services:
     build: .
     container_name: gmail-purger-worker
     command: python worker.py
+    environment:
+      - PYTHONUNBUFFERED=1
     env_file:
       - .env
     volumes:
@@ -14,10 +16,12 @@ services:
     build: .
     container_name: gmail-purger-dashboard
     command: python app.py
+    environment:
+      - PYTHONUNBUFFERED=1
     env_file:
       - .env
     ports:
-      - "5005:5005"
+      - "6000:6000"
     volumes:
       - ./config:/app/config
       - ./data:/app/data
