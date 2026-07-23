@@ -39,7 +39,7 @@ def main_loop():
         try:
             deleted = run_once()
             record_run(deleted, error=None)
-            print(f'Purge run complete. {len(deleted)} message(s) deleted.')
+            print(f"Purge run complete. {len(deleted)} message(s) deleted.", flush=True)
 
         except Exception as e:
             traceback.print_exc()
