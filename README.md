@@ -91,7 +91,7 @@ Or manually:
 docker compose up -d --build
 ```
 
-Dashboard will be available at `http://<host>:6000`.
+Dashboard will be available at `http://<host>:5005` or any port you specified at app.py.
 
 ### Useful commands
 
@@ -107,7 +107,7 @@ docker compose down               # stop everything
 | Variable                | Default | Description                                  |
 |--------------------------|---------|-----------------------------------------------|
 | `GMAIL_ADDRESS`           | —       | Your Gmail address                            |
-| `GMAIL_APP_PASSWORD`      | —       | 16-character app password                     |
+| `APP_PASSWORD`      | —       | 16-character app password                     |
 | `PURGE_DAYS`              | `5`     | Delete messages older than this many days     |
 | `CHECK_INTERVAL_HOURS`    | `24`    | How often the worker runs a purge cycle       |
 
